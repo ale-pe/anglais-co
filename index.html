@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <style>
+      .home {
+  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+video {
+    width: 100%;
+    height: auto;
+  }
+  </style>
+</head>
+<!-- Navigation -->
+<div id="home" class="home">
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+    <div class="container">
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="card border-0 shadow my-5">
+      <div class="card-body p-5">
+        
+        <h1 class="font-weight-light">Fixed Full Page Background Image</h1>
+        <br>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Paramètre vidéo</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fichier : </td>
+                <td><input type="file"  id="myFile"><br></td>
+              </tr>
+              <tr>
+                <td>Commencer la lecture à :</td>
+                <td><input class="form-control" id="input1"></td>
+              </tr>
+              <tr>
+                <td>Terminer la lecture à :</td>
+                <td><input class="form-control" id="input2" disabled></td>
+              </tr>
+            </tbody>
+          </table>
+        <br>
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Paramètre temps</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nombre d'écoutes :</td>
+                    <td><input class="form-control" id="input2"value="3" disabled></td>
+                  </tr>
+              <tr>
+                <td>Temps de pause entre chaque lectures : </td>
+                <td><input class="form-control" id="input3" value="3"></td>
+              </tr>
+              <tr>
+                <td>Temps de rédaction après les écoutes :</td>
+                <td><input class="form-control" id="input4" value="3"></td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        <button type="button" onclick="lancer()" class="btn btn-primary btn-block">Lancer</button>
+
+      </div>
+    </div>
+  </div>
+</div> 
+
+
+<div class="container-fluid" id="waiting">
+  <div class="row">
+      <div class="col-12 p-0">
+          <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+            <div class="card">
+              <div class="card-body">
+              <h1 class="display-4">Quelques règles avant de commencer</h1>
+              </p>
+              <div class="text-center">
+                <p class="lead">Le document sera diffusé 3 fois</p>
+                <p class="lead">Entre chaque écoute, une pause de x sera faite</p>
+                <p class="lead">A la fin des trois écoutes, vous devez redigez un compte-rendu en français</p>
+                <button type="button" onclick="lancer2();" class="btn btn-info">Lancer</button>
+              </div>
+            </div>
+                  </div>
+                </div>
+              <p class="lead">
+              </p>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="container-fluid" id="waiting1">
+  <div class="row">
+      <div class="col-12 p-0">
+          <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+            <div class="card">
+              <div class="card-body">
+              <h1 class="display-4" id="bipa"></h1>
+
+            </div>
+                  </div>
+                </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="container-fluid" id="waiting2">
+    <div class="row">
+        <div class="col-12 p-0">
+            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+              <div class="card">
+                <div class="card-body">
+                <h1 class="display-4" id="bipb"></h1>
+  
+              </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="waiting3">
+      <div class="row">
+          <div class="col-12 p-0">
+              <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
+                <div class="card">
+                  <div class="card-body">
+                  <h1 class="display-4" id="bipc"></h1>
+    
+                </div>
+                      </div>
+                    </div>
+              </div>
+          </div>
+      </div>
+
+<div id=video1 >
+<video controls id="theVideo1" onended="pause1()">
+</div>
+<div id=video2 >
+<video controls id="theVideo2" onended="pause2()">
+</div>
+<div id=video3 >
+<video controls id="theVideo3" onended="pause3()">
+</div>
+<script>
+  document.getElementById("waiting2").style.display = "none";
+  document.getElementById("waiting3").style.display = "none";
+  document.getElementById("waiting1").style.display = "none";
+  document.getElementById("waiting").style.display = "none";
+  document.getElementById("video1").style.display = "none";
+  document.getElementById("video2").style.display = "none";
+  document.getElementById("video3").style.display = "none";
+
+function changeVideo() {
+  var chosenFile = document.getElementById("myFile").files[0];
+  document.getElementById("theVideo1").setAttribute("src", URL.createObjectURL(chosenFile));
+  document.getElementById("theVideo2").setAttribute("src", URL.createObjectURL(chosenFile));
+  document.getElementById("theVideo3").setAttribute("src", URL.createObjectURL(chosenFile));
+
+
+
+
+
+  
+
+
+timevideo()
+}
+function timevideo(){
+    document.getElementById("input2").value = document.getElementById("theVideo").duration;
+}
+
+document.getElementById("myFile").addEventListener("change", changeVideo);
+
+function lancer(){
+  document.getElementById("waiting").style.display = "block";
+  document.getElementById("home").style.display = "none";
+  document.getElementById("theVideo1").currentTime = document.getElementById("input1").value;
+}
+function lancer2(){
+  document.getElementById("waiting").style.display = "none";
+  document.getElementById("home").style.display = "none";
+  document.getElementById("theVideo1").currentTime = document.getElementById("input1").value;
+  document.getElementById("theVideo2").currentTime = document.getElementById("input1").value;
+  document.getElementById("theVideo3").currentTime = document.getElementById("input1").value;
+
+  document.getElementById("video1").style.display = "block";
+  document.getElementById("theVideo1").play();
+
+}
+
+
+
+
+function pause1(){
+  document.getElementById("waiting1").style.display = "block";
+  document.getElementById("video1").style.display = "none";
+  intervalIda = setInterval(bipa, 1000);
+}
+
+function pause2(){
+  document.getElementById("waiting2").style.display = "block";
+  document.getElementById("video2").style.display = "none";
+  intervalIdb = setInterval(bipb, 1000);
+}
+
+function pause3(){
+  document.getElementById("waiting3").style.display = "block";
+  document.getElementById("video3").style.display = "none";
+  intervalIdc = setInterval(bipc, 1000);
+}
+var countera = 10;
+var intervalIda = null;
+var counterb = 10;
+var intervalIda = null;
+var counterc = 10;
+var intervalIda = null;
+function bipa() {
+    countera--;
+    if(countera == 0) {
+      clearInterval(intervalIda);
+      document.getElementById("bipa").innerHTML = "TERMINE!";
+      document.getElementById("waiting1").style.display = "none";
+      document.getElementById("video2").style.display = "block";
+      document.getElementById("theVideo2").play();
+
+    }
+    else {	
+        document.getElementById("bipa").innerHTML = "2ème écoute écoute dans " + countera + " secondes";
+    }	
+}
+
+function bipb() {
+    counterb--;
+    if(counterb == 0) {
+      clearInterval(intervalIdb);
+      document.getElementById("bipb").innerHTML = "TERMINE!";
+      document.getElementById("waiting2").style.display = "none";
+      document.getElementById("video3").style.display = "block";
+      document.getElementById("theVideo3").play();
+      
+    }
+    else {	
+        document.getElementById("bipb").innerHTML = "3ème écoute écoute dans " + counterb + " secondes";
+    }	
+}
+
+function bipc() {
+    counterc--;
+    if(counterc == 0) {
+      clearInterval(intervalIdc);
+      document.getElementById("bipc").innerHTML = "TERMINE!";
+      
+    }
+    else {	
+        document.getElementById("bipc").innerHTML ="Il reste plus que"+ counterc + " secondes pour rediger";
+    }	
+}
+
+
+
+
+</script>
