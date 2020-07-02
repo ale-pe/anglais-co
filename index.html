@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title>Anglais CO</title>
+  <title>Comphrénsion Orale auto V1</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="popper.min.js"></script>
+  <script src="bootstrap.min.js"></script>
   <style>
+      body{
+        background: url('bg.jpeg') no-repeat center center fixed;
+      }
+
       .home {
-  background: url('https://images.pexels.com/photos/207691/pexels-photo-207691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -20,11 +23,13 @@ video {
     width: 100%;
     height: auto;
   }
+  
   </style>
 </head>
+<body>
 <!-- Navigation -->
 <div id="home" class="home">
-<nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow">
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top mb-5 shadow" id="nav">
     <div class="container">
       <a class="navbar-brand" href="#">Anglais CO</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,262 +56,296 @@ video {
     </div>
   </nav>
 
+
   <!-- Page Content -->
-  <div class="container">
+  <div class="container" id="etp1">
     <div class="card border-0 shadow my-5">
       <div class="card-body p-5">
-        
-        <h1 class="font-weight-light">Compréhension Orale</h1>
+        <h1 class="font-weight-light">Etape 1 : Choix du document</h1>
         <br>
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Paramètre vidéo</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Fichier : </td>
-                <td><input type="file"  id="myFile"><br></td>
-              </tr>
-              <tr>
-                <td>Commencer la lecture à : (secondes)</td>
-                <td><input class="form-control" id="input1" value="0"></td>
-              </tr>
-              <tr>
-                <td>Terminer la lecture à :</td>
-                <td><input class="form-control" id="input2" disabled></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="alert alert-danger">
+          <p><strong>⚠ L'outil rencontre actuellement des problèmes sur le navigateur Firefox. Veuillez privilégier Chrome.</p>
+           📺 Veuiilez mettre votre navigateur en plein écran (Touche F12)</strong>
+        </div>
+        <p>Pour commencer, veuillez choisir une vidéo ou un document audio :</p>
+        <p><input type="file"  id="myFile"></p>
+        <p><button type="button" onclick="goetp2()" class="btn btn-primary btn-block">Suivant</button> </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container" id="etp2">
+    <div class="card border-0 shadow my-5">
+      <div class="card-body p-5">
+        <h1 class="font-weight-light">Etape 2 : Paramètres de du docuement</h1>
         <br>
+        <p>Veuillez configurer le début du document. Pour cela naviguez dans le player et cliquez sur "Choisir ce point" pour configurer le début de la vidéo. Si vous voulez que la vidéo commence à 0:00:00, continuez à l'étape suivante.</p>
         <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Paramètre temps</th>
-                <th></th>
-              </tr>
-            </thead>
             <tbody>
                 <tr>
-                    <td>Nombre d'écoutes :</td>
-                    <td><input class="form-control" id="input2"value="3" disabled></td>
+                    <td colspan="3"><div id=video2 >
+                      <video controls id="theVideo1" onended="pause()">
+                  </div></td>
                   </tr>
               <tr>
-                <td>Temps de pause entre chaque lectures : </td>
-                <td><input class="form-control" id="input3" value="10" disabled></td>
+                <td >Début du document à :</td>
+                <td id="textedebutvideo">00:00:00</td>
+                <td><div class="btn-group">
+                  <button type="button" class="btn btn-primary" onclick="getCurTimedebut()">Choisir ce point</button>
+                  <button type="button" class="btn btn-danger" onclick="resetDebut()">Remettre a zéro</button></td>
+                    </div>
               </tr>
               <tr>
-                <td>Temps de rédaction après les écoutes :</td>
-                <td><input class="form-control" id="input4" value="10" disabled></td>
-              </tr>
+                <td >Fin du docuement à :</td>
+                <td id="textefinvideo">00:00:00</td>
+                <td><div class="btn-group">
+                  </div>           
+                </tr>
 
             </tbody>
           </table>
+        <p><button type="button" onclick="goetp3()" class="btn btn-primary btn-block">Suivant</button> </p>
+      </div>
+    </div>
+  </div>
+  </div> 
 
-        <button type="button" onclick="lancer()" class="btn btn-primary btn-block">Lancer</button>
+  <div class="container" id="etp3">
+    <div class="card border-0 shadow my-5">
+      <div class="card-body p-5">
+        <h1 class="font-weight-light">Etape 3 : Réglage du temps</h1>
+        <br>
+        <p>Pour terminer, veuillez configurer les réglages de temps..</p>
+        <table class="table table-hover">
+          <tbody>
+              <tr>
+                <td>Nombre d'écoutes :</td>
+                <td><select id="nbecoute"name="cars" class="custom-select mb-3">
+                  <option selected>3</option>
+                </select></td>
+                </tr>
+            <tr>
+              <td>Pause entre les écoutes :</td>
+              <td><select id="tpspauseecoute"name="cars" class="custom-select mb-3">
+                <option value>1</option>
+                <option selected>3</option>
+                <option value>5</option>
+              </select></td>
+            </tr>
+            <tr>
+              <td >Temps de rédaction:</td>
+              <td><select id="tpsredaction"name="cars" class="custom-select mb-3">
+                <option value>3</option>
+                <option value>5</option>
+                <option selected>10</option>
+              </select></td>      
+              </tr>
 
+          </tbody>
+        </table>
+        <p><button type="button" onclick="goetp4()" class="btn btn-primary btn-block">Suivant</button> </p>
       </div>
     </div>
   </div>
 </div> 
-
-
-<div class="container-fluid" id="waiting">
-  <div class="row">
-      <div class="col-12 p-0">
-          <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
-            <div class="card">
-              <div class="card-body">
-              <h1 class="display-4">Quelques règles avant de commencer</h1>
-              </p>
-              <div class="text-center">
-                <p class="lead">Le document sera diffusé 3 fois</p>
-                <p class="lead">Entre chaque écoute, une pause de x sera faite</p>
-                <p class="lead">A la fin des trois écoutes, vous devez redigez un compte-rendu en français</p>
-                <button type="button" onclick="lancer2();" class="btn btn-info">Lancer</button>
-              </div>
-            </div>
-                  </div>
-                </div>
-              <p class="lead">
-              </p>
-          </div>
-      </div>
-  </div>
-</div>
-
-
-<div class="container-fluid" id="waiting1">
-  <div class="row">
-      <div class="col-12 p-0">
-          <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
-            <div class="card">
-              <div class="card-body">
-              <h1 class="display-4" id="bipa"></h1>
-
-            </div>
-                  </div>
-                </div>
-          </div>
-      </div>
-  </div>
-
-  <div class="container-fluid" id="waiting2">
-    <div class="row">
-        <div class="col-12 p-0">
-            <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
-              <div class="card">
-                <div class="card-body">
-                <h1 class="display-4" id="bipb"></h1>
-  
-              </div>
-                    </div>
-                  </div>
-            </div>
-        </div>
+<div class="container-fluid" id="regles">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h1 class="font-weight-light" style="text-align: center;">Quelques règles avant de commencer</h1>
+      <br>
+      <p class="lead" id="txt1regles">Le document sera diffusé none fois</p>
+      <p class="lead" id="txt2regles">Entre chaque écoute, une pause de none sera faite</p>
+      <p class="lead" id="txt3regles">À la fin des écoutes, vous aurez none minutes pour rédiger un compte-rendu en français !</p>
+      <p><button type="button" onclick="videoplay()" class="btn btn-primary btn-block">Commencer</button> </p>
     </div>
+  </div>
+</div>
 
-    <div class="container-fluid" id="waiting3">
-      <div class="row">
-          <div class="col-12 p-0">
-              <div class="jumbotron min-vh-100 text-center m-0 bg-info d-flex flex-column justify-content-center">
-                <div class="card">
-                  <div class="card-body">
-                  <h1 class="display-4" id="bipc"></h1>
-    
-                </div>
-                      </div>
-                    </div>
-              </div>
-          </div>
-      </div>
+<div class="container-fluid" id="waitentreecoute">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h1 class="font-weight-light" style="text-align: center;" id="waitentreecoutetxt1"></h1>
+      <br>
+    </div>
+  </div>
+</div>
 
-<div id=video1 >
-<video controls id="theVideo1" onended="pause1()">
+<div class="container-fluid" id="fin">
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h1 class="font-weight-light" style="text-align: center;">FIN !</h1>
+      <br>
+    </div>
+  </div>
 </div>
-<div id=video2 >
-<video controls id="theVideo2" onended="pause2()">
-</div>
-<div id=video3 >
-<video controls id="theVideo3" onended="pause3()">
-</div>
+
+<div id=video1>
+    <video controls id="theVideo2" onended="pause1()">
+  </div>
+
+</body>
+
+
+
 <script>
-  document.getElementById("waiting2").style.display = "none";
-  document.getElementById("waiting3").style.display = "none";
-  document.getElementById("waiting1").style.display = "none";
-  document.getElementById("waiting").style.display = "none";
-  document.getElementById("video1").style.display = "none";
-  document.getElementById("video2").style.display = "none";
-  document.getElementById("video3").style.display = "none";
+var countera = 10;
+var intervalIda = null;
+var ecouteencours = 0;
+var tempsentreecoute = 0;
+var nbecoute = 0;
+var finvideo = 0;
+var debutvideo = 0;
+var tempsredaction = 0;
+var tempo1 = 0;
+var tempo2 = 0;
+document.getElementById("etp2").style.display = "none";
+document.getElementById("etp3").style.display = "none";
+document.getElementById("video1").style.display = "none";
+document.getElementById("regles").style.display = "none";
+document.getElementById("waitentreecoute").style.display = "none";
+document.getElementById("fin").style.display = "none";
 
+
+document.getElementById("myFile").addEventListener("change", changeVideo);
 function changeVideo() {
   var chosenFile = document.getElementById("myFile").files[0];
   document.getElementById("theVideo1").setAttribute("src", URL.createObjectURL(chosenFile));
   document.getElementById("theVideo2").setAttribute("src", URL.createObjectURL(chosenFile));
-  document.getElementById("theVideo3").setAttribute("src", URL.createObjectURL(chosenFile));
-
-
-
-
-
-  
-
-
-timevideo()
 }
-function timevideo(){
-    document.getElementById("input2").value = document.getElementById("theVideo").duration;
+function goetp2(){
+    document.getElementById("textefinvideo").innerHTML = (new Date(document.getElementById("theVideo1").duration * 1000).toISOString().substr(11, 8));
+    finvideo = document.getElementById("theVideo1").duration;
+    document.getElementById("theVideo1").duration;
+    document.getElementById("etp1").style.display = "none";
+    document.getElementById("etp2").style.display = "block";
 }
 
-document.getElementById("myFile").addEventListener("change", changeVideo);
+function getCurTimedebut() {
+  var vid = document.getElementById("theVideo1");
+  vid.pause();
+  document.getElementById("textedebutvideo").innerHTML = new Date(vid.currentTime * 1000).toISOString().substr(11, 8);
+  debutvideo = vid.currentTime;
+}
 
-function lancer(){
-  document.getElementById("waiting").style.display = "block";
+function resetDebut() {
+  var vid = document.getElementById("theVideo1");
+  vid.pause();
+  vid.currentTime = 0;
+  document.getElementById("textedebutvideo").innerHTML = new Date(0 * 1000).toISOString().substr(11, 8);
+  debutvideo = 0;
+
+} 
+
+
+function goetp3(){
+  var vid = document.getElementById("theVideo1");
+  vid.pause();
+  document.getElementById("etp2").style.display = "none";
+  document.getElementById("etp3").style.display = "block";
+// Calcul début vidéo
+var hms = document.getElementById("textedebutvideo").textContent;
+var a = hms.split(':');
+var debutvideo = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+console.log(debutvideo);
+
+// Calcul fin vidéo
+var hms = document.getElementById("textefinvideo").textContent;
+var a = hms.split(':');
+var finvideo = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+console.log(finvideo);
+
+// Gérer interface
+
+}
+
+function goetp4(){
+   tempsentreecoute = document.getElementById('tpspauseecoute').options[document.getElementById('tpspauseecoute').selectedIndex].text*60;
+   nbecoute = document.getElementById('nbecoute').options[document.getElementById('nbecoute').selectedIndex].text
+   tempsredaction = document.getElementById('tpsredaction').options[document.getElementById('tpsredaction').selectedIndex].text*60;
+  document.getElementById("etp2").style.display = "none";
+  document.getElementById("etp3").style.display = "none";
+  document.getElementById("video1").style.display = "none";
+  document.getElementById("regles").style.display = "block";
+  document.getElementById("etp1").style.display = "none";
+  document.getElementById("nav").style.display = "none";
   document.getElementById("home").style.display = "none";
-  document.getElementById("theVideo1").currentTime = document.getElementById("input1").value;
+  document.body.style.backgroundImage = "none";
+  document.body.style.backgroundColor = "black";
+  document.getElementById("txt1regles").innerHTML ="Le document sera diffusé "+nbecoute+" fois";
+  document.getElementById("txt2regles").innerHTML = "Entre chaque écoute, une pause de "+tempsentreecoute/60+" minute(s) sera faite" ;
+  document.getElementById("txt3regles").innerHTML = "À la fin des écoutes, vous aurez "+tempsredaction/60+" minutes pour rédiger un compte-rendu en français !";
 }
-function lancer2(){
-  document.getElementById("waiting").style.display = "none";
-  document.getElementById("home").style.display = "none";
-  document.getElementById("theVideo1").currentTime = document.getElementById("input1").value;
-  document.getElementById("theVideo2").currentTime = document.getElementById("input1").value;
-  document.getElementById("theVideo3").currentTime = document.getElementById("input1").value;
 
+
+
+
+function videoplay(){
+  var vid = document.getElementById("theVideo2");
+  document.getElementById("regles").style.display = "none";
   document.getElementById("video1").style.display = "block";
-  document.getElementById("theVideo1").play();
-
+  console.log(debutvideo);
+  vid.currentTime = debutvideo;
+  document.getElementById("theVideo2").play();
+  ecouteencours = ecouteencours+1;
+  console.log(ecouteencours);
 }
 
 
 
 
 function pause1(){
-  document.getElementById("waiting1").style.display = "block";
+  var vid = document.getElementById("theVideo1");
+
+  console.log(Number(nbecoute));
+  console.log(Number(ecouteencours));
+  if(ecouteencours < Number(nbecoute)){
+  countera = tempsentreecoute;
+  //countera = 1;
+  intervalIda = null;
+  document.getElementById("waitentreecoute").style.display = "block";
   document.getElementById("video1").style.display = "none";
   intervalIda = setInterval(bipa, 1000);
+
+  }
+  else {
+  countera = tempsredaction;
+  //countera = 1;
+  intervalIda = null;
+  document.getElementById("waitentreecoute").style.display = "block";
+  document.getElementById("video1").style.display = "none";
+  intervalIda = setInterval(bipa, 1000);  }
+
 }
 
-function pause2(){
-  document.getElementById("waiting2").style.display = "block";
-  document.getElementById("video2").style.display = "none";
-  intervalIdb = setInterval(bipb, 1000);
-}
 
-function pause3(){
-  document.getElementById("waiting3").style.display = "block";
-  document.getElementById("video3").style.display = "none";
-  intervalIdc = setInterval(bipc, 1000);
-}
-var countera = 10;
-var intervalIda = null;
-var counterb = 10;
-var intervalIda = null;
-var counterc = 10;
-var intervalIda = null;
+
 function bipa() {
+  var vid = document.getElementById("theVideo1");
+
     countera--;
     if(countera == 0) {
-      clearInterval(intervalIda);
-      document.getElementById("bipa").innerHTML = "TERMINE!";
-      document.getElementById("waiting1").style.display = "none";
-      document.getElementById("video2").style.display = "block";
-      document.getElementById("theVideo2").play();
+      if(ecouteencours < Number(nbecoute)){
+        clearInterval(intervalIda);
+        document.getElementById("waitentreecoute").style.display = "none";
+        document.getElementById("video1").style.display = "block";
+        videoplay();
+      } else {
+        document.getElementById("fin").style.display = "block";
+        document.getElementById("waitentreecoutetxt1").innerHTML = "TERMINE !";
+        document.getElementById("waitentreecoute").style.display = "none";
+
+      }
 
     }
-    else {	
-        document.getElementById("bipa").innerHTML = "2ème écoute écoute dans " + countera + " secondes";
-    }	
-}
-
-function bipb() {
-    counterb--;
-    if(counterb == 0) {
-      clearInterval(intervalIdb);
-      document.getElementById("bipb").innerHTML = "TERMINE!";
-      document.getElementById("waiting2").style.display = "none";
-      document.getElementById("video3").style.display = "block";
-      document.getElementById("theVideo3").play();
-      
+    else {
+      if(ecouteencours < Number(nbecoute)){
+        document.getElementById("waitentreecoutetxt1").innerHTML = "Prochaine écoute dans "+new Date(countera * 1000).toISOString().substr(11, 8);
+    } else {
+      document.getElementById("waitentreecoutetxt1").innerHTML = "Fin dans "+new Date(countera * 1000).toISOString().substr(11, 8);
     }
-    else {	
-        document.getElementById("bipb").innerHTML = "3ème écoute écoute dans " + counterb + " secondes";
-    }	
-}
-
-function bipc() {
-    counterc--;
-    if(counterc == 0) {
-      clearInterval(intervalIdc);
-      document.getElementById("bipc").innerHTML = "TERMINE!";
-      
     }
-    else {	
-        document.getElementById("bipc").innerHTML ="Il reste plus que"+ counterc + " secondes pour rediger";
-    }	
-}
-
+    }
 
 
 
